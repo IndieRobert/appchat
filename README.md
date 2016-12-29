@@ -55,7 +55,6 @@ Look at the ping and at your CPU load now, to see the impact of number of client
 
   I'm not satisfied actually with the results because 1) I was expecting a greater number of bots for 100% CPU, 2) the ping is oscillating because 3) server is sleeping most of the time.
 
-  I don't have much time now, but a better solution could be to send message continously without blocking the server for the other operations. Something like keeping track of what each clients received so far, and keep updating them continuously without blocking. I don't have the details.
   * [BUG] If you block the execution of the server (under windows its possible by blocking the console), then things goes a bit mad.
   * [BUG] when forcefully quitting bots.go program, only a few clients are disconnected from the server point of view.
   * [BUG] in some case, when a browser page disconnect for example, the bots seems to not be able to 'claimUserName' anymore
