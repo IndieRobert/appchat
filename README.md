@@ -44,8 +44,8 @@ Look at the ping and at your CPU load now, to see the impact of number of client
 
   * use https and wws
   * use tokens (uuid) to uniquely identify user and put them in a database
-  * [sv.go] put sv.go and bots.go into src folder with a proper package
-  * [sv.go] Using bots (see bots.go) and the ping command, 350 clients sending one message per second make my laptop CPU run at 100% and the ping grows dramatically. The quick guess is that the message broadcasting goes mad.
+  * put sv.go and bots.go into src folder with a proper package
+  * Using bots (see bots.go) and the ping command, 350 clients sending one message per second make my laptop CPU run at 100% and the ping grows dramatically. The quick guess is that the message broadcasting goes mad.
 
   If the message broadcasting is slow, one solution would be to batch messages together according to a time window. For example, instead of broadcasting 1 message at a time, the server would wait say 200ms, take all the messages that need to be dispatched, zip them into a blob, and broadcast that to the clients.
 
@@ -56,13 +56,13 @@ Look at the ping and at your CPU load now, to see the impact of number of client
   I'm not satisfied actually with the results because 1) I was expecting a greater number of bots for 100% CPU, 2) the ping is oscillating because 3) server is sleeping most of the time.
 
   I don't have much time now, but a better solution could be to send message continously without blocking the server for the other operations. Something like keeping track of what each clients received so far, and keep updating them continuously without blocking. I don't have the details.
-  * [sv.go] BUG, If you block the execution of the server (under windows its possible by blocking the console), then things goes a bit mad.
-  * [sv.go] BUG, when forcefully quitting bots.go program, only a few clients are disconnected from the server point of view.
-  * [sv.go] BUG, in some case, when a browser page disconnect for example, the bots seems to not be able to 'claimUserName' anymore
-  * [sv.go] Implement codec instead of using "variant" + BFS (Big Fucking Switch) for client/server communication.
-  * [sv.go] Fix the "websocket connection get closed when flow quit handler" problem.
-  * [sv.go] This is my first program in go, there must be some big mistakes go-wise.
-  * [sv.go] Server shutdown is missing
-  * [sv.go] We want to be able to turn on/off logging; right now, some are commented out for performances reasons.
-  * [bots.go] bots.go is super quick&dirty with dedupe code and everything...
-  * [cl.js] Find a better way to manage js UI, using ReactJS?
+  * [BUG] If you block the execution of the server (under windows its possible by blocking the console), then things goes a bit mad.
+  * [BUG] when forcefully quitting bots.go program, only a few clients are disconnected from the server point of view.
+  * [BUG] in some case, when a browser page disconnect for example, the bots seems to not be able to 'claimUserName' anymore
+  * Implement codec instead of using "variant" + BFS (Big Fucking Switch) for client/server communication.
+  * Fix the "websocket connection get closed when flow quit handler" problem.
+  * This is my first program in go, there must be some big mistakes go-wise.
+  * Server shutdown is missing
+  * We want to be able to turn on/off logging; right now, some are commented out for performances reasons.
+  * bots.go is super quick&dirty with dedupe code and everything...
+  * Find a better way to manage js UI, using ReactJS?
