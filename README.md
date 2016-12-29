@@ -65,4 +65,5 @@ Look at the ping and at your CPU load now, to see the impact of number of client
   * Server shutdown is missing
   * We want to be able to turn on/off logging; right now, some are commented out for performances reasons.
   * bots.go is super quick&dirty with dedupe code and everything...
+  * batching mechanism 250ms window is actually too big, user feel the latency.
   * Find a better way to manage js UI, using ReactJS?
