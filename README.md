@@ -45,11 +45,11 @@ Look at the ping and at your CPU load now, to see the impact of number of client
   * use https and wws
   * use tokens (uuid) to uniquely identify user and put them in a database
   * [sv.go] put sv.go and bots.go into src folder with a proper package
-  * [sv.go] Using bots (see bots.go) and the ping command, 350 clients sending one message per second make the CPU run at 100% and ping grows dramatically. The quick guess is that the message broadcasting goes mad.
+  * [sv.go] Using bots (see bots.go) and the ping command, 350 clients sending one message per second make my laptop CPU run at 100% and the ping grows dramatically. The quick guess is that the message broadcasting goes mad.
 
-  If the broadcasting is slow, one solution would be to batch messages together according to a time window. For example, instead of broadcasting 1 message at a time, the server would wait say 200ms, take all the messages that need to be dispatched, zip them into a blob, and broadcast that to the clients.
+  If the message broadcasting is slow, one solution would be to batch messages together according to a time window. For example, instead of broadcasting 1 message at a time, the server would wait say 200ms, take all the messages that need to be dispatched, zip them into a blob, and broadcast that to the clients.
 
-  UPDATE: I have implemented the batching mechanism. With a time window of 250ms, 350+ bots take now 25% CPU. It takes 900+ bots to have CPU at 100% and for some reasons the ping is still under 1 second. 
+  UPDATE: I have implemented the batching mechanism. With a time window of 250ms, 350+ bots take now 25% CPU. It takes 900+ bots to have CPU at 100% and for some reasons the ping is still under 1 second - ish. 
 
   The user is not much impacted by the maximum of 250ms latency added by the batching time window but still when there is no traffic, it should be instant. So an improvement could be that the server would size the time window according to its CPU load / latency.
 
