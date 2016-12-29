@@ -7,20 +7,27 @@ Tested under windows 10 + recent Chrome.
 ## Start backend server
 
 > cd appchat/sv
+
 > go run sv.go
+
 Server is starting up.
 
 ## Start webserver
 
 > cd appchat
+
 > python -m SimpleHTTPServer 8000
 
 ## Chat in your browser
 
 go to http://localhost:8000/
+
 Enter your username and click on "chat now!"
+
 Your should see the chatroom now
+
 Type your messages and click send
+
 Open as many tab as you want to test chatting with multiple clients
 
 ## Bots
@@ -28,6 +35,7 @@ Open as many tab as you want to test chatting with multiple clients
 Bots allow the creation of hundreds of clients in order to stress test the system
 
 > cd appchat/sv
+
 > go run bots.go
 
 Look at the ping and at your CPU load now, to see the impact of number of clients
