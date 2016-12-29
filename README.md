@@ -32,7 +32,7 @@ Open as many tab as you want to test chatting with multiple clients
 
 ## Bots
 
-Bots allow the creation of hundreds of clients in order to stress test the system
+'bots.go' allow the creation of hundreds of clients in order to stress test the system
 
 > cd appchat/sv
 
@@ -44,6 +44,7 @@ Look at the ping and at your CPU load now, to see the impact of number of client
 
   * use https and wws
   * use tokens (uuid) to uniquely identify user and put them in a database
+  * [sv.go] put sv.go and bots.go into src folder with a proper package
   * [sv.go] Using bots (see bots.go) and the ping command, 350 clients sending one message per second make the CPU run at 100% and ping grows dramatically. The quick guess is that the message broadcasting goes mad.
 
   If the broadcasting is slow, one solution would be to batch messages together according to a time window. For example, instead of broadcasting 1 message at a time, the server would wait say 200ms, take all the messages that need to be dispatched, zip them into a blob, and broadcast that to the clients.
@@ -55,7 +56,7 @@ Look at the ping and at your CPU load now, to see the impact of number of client
   I'm not satisfied actually with the results because 1) I was expecting a greater number of bots for 100% CPU, 2) the ping is oscillating because 3) server is sleeping most of the time.
 
   I don't have much time now, but a better solution could be to send message continously without blocking the server for the other operations. Something like keeping track of what each clients received so far, and keep updating them continuously without blocking. I don't have the details.
-  * [sv.go] BUG, when forcefully quitting bots.go program, only a few clients are disconnected from the server point of view. Why? Would they timeout at some points?
+  * [sv.go] BUG, when forcefully quitting bots.go program, only a few clients are disconnected from the server point of view. Why?
   * [sv.go] BUG, in some case, when a browser page disconnect for example, the bots seems to not be able to 'claimUserName' anymore
   * [sv.go] Implement codec instead of using "variant" + BFS (Big Fucking Switch) for client/server communication.
   * [sv.go] Fix the "websocket connection get closed when flow quit handler" problem.
